@@ -4,6 +4,10 @@ pipeline {
     tools {
         maven 'maven-3.9'
     }
+    environment {
+        DOCKER_REPO_SERVER = '688435429085.dkr.ecr.ap-southeast-1.amazonaws.com'
+        DOCKER_REPO = "${DOCKER_REPO_SERVER}/java-maven-app"
+    }
     stages {
         stage ('increment version') {
             steps {
@@ -31,10 +35,10 @@ pipeline {
             steps {
                 script {
                     echo "building the docker image..."
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh "docker build -t rajibmardi/my-repo:${IMAGE_NAME} ."
-                        sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh "docker push rajibmardi/my-repo:${IMAGE_NAME}"
+                    withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh "docker build -t ${DOCKER_REPO}:${IMAGE_NAME} ."
+                        sh "echo $PASS | docker login -u $USER --password-stdin ${DOCKER_REPO_SERVER}"
+                        sh "docker push ${DOCKER_REPO}:${IMAGE_NAME}"
                     }
                 }
             }
@@ -66,22 +70,11 @@ pipeline {
 
                         sh "git remote set-url origin https://${USER}:${PASS}@gitlab.com/Rajib-Mardi/java-maven-app.git"
                         sh 'git add .'
-                        sh 'git commit -m "ci:feature/k8s"'
-                        sh 'git push origin HEAD:feature/k8s'
+                        sh 'git commit -m "ci:bump-version"'
+                        sh 'git push origin HEAD:complete-pipeline-ecr-eks'
                     }
                  }
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
