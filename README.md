@@ -65,6 +65,11 @@
   ###  Technologiesused: 
   * Kubernetes, Jenkins, AWS EKS, AWS ECR, Java, Maven, Linux, Docker, Git 
   ###  Project Description: 
+
+![Media Player 28-11-2024 21_30_55](https://github.com/user-attachments/assets/5f301fe8-5472-4d92-aac4-2adb0385ef29)
+
+ 
+  
   ####  Create private ECR Repository
 
   ![Elastic Container Registry - Create Repository - Google Chrome 07-05-2023 19_39_45](https://github.com/Rajib-Mardi/Kubernetes-on-AWS-EKS/assets/96679708/77fca88c-8b6d-4350-8c8c-608515a5f764)
