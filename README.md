@@ -13,9 +13,13 @@
 
 
 #### Integrate deploy step in the CI/CD pipeline to deploy newly built application image from DockerHub private registry to the EKS cluster 
-   ####  Adjust Jenkinsfile to set environment variables with envsubst
+   ####  Adjust Jenkinsfile to set environment variables with envsubst 
 
    * envsubst command -: we pass the envsubst command as a```kubernetes/deployment.yaml```  file with a relative path; it will take a  file, look for the syntax dollar sign and name of the variable, and match the variable to any environment variable defined in that context. It will create a temporary file with a value set, and we are going to pipe the temporary file and pass it as a parameter with syntax.
+
+   *  In ```deploy stage``` : it executes two shell commands using ```sh``` :
+       *  ```envsubst < kubernetes/deployment.yaml | kubectl apply -f -```: This command substitutes environment variables in the ```deployment.yaml``` file and applies the resulting configuration to the Kubernetes cluster using ```kubectl```.
+       * ```envsubst < kubernetes/service.yaml | kubectl apply -f -```: Similarly, it substitutes environment variables in the ```service.yaml``` file and applies the resulting configuration to the cluster.
 
 * Install “gettext-base” tool inside Jenkins Container on DigitalOcean Server to have envsubst available 
   * ssh into the droplet
