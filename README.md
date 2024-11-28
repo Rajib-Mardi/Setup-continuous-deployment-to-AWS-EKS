@@ -4,6 +4,10 @@
 * Kubernetes, Jenkins, AWS EKS, Docker Hub, Java, Maven, Linux, Docker,Git
 
 ### Project Description: 
+
+![9 - Complete CI_CD Pipeline with EKS and DockerHub _ TechWorld with Nana - Brave 27-11-2024 11_59_48](https://github.com/user-attachments/assets/9400584b-2bc8-4457-b4ae-6f65f7072db5)
+
+
 * Write K8s manifest files for Deployment and Service configuration
 * Create  Deployment and Service for App deployment
 
